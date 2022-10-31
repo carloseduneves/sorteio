@@ -15,7 +15,9 @@ function Sorteio() {
 
   }
   const raffle = () => {
-
+    if(names.length === 0){
+      alert('insira nomes');
+    }
     const raffle = Math.floor(Math.random() * names.length);
 
 
@@ -24,7 +26,7 @@ function Sorteio() {
     let indexFind = names.indexOf(names[raffle]);
     names.splice(indexFind, 1);
 
-    
+   
   }
   return (
     <div>
