@@ -1,39 +1,41 @@
-import {useState, useRef, useEffect} from 'react';
+import {useState, useRef} from 'react';
 
 function Sorteio() {
-
-  let [nameList, setNameList] = useState([])
+  const [raffleName, setRaffleName] = useState('');
+  const [names] = useState([]);
   const [nameInput, setNameInput] = useState("");
-
   const reference = useRef(null);
 
-  useEffect(() => {
-
+ const pushName = (e) => {
     e.preventDefault();
-
-    setNameList([...nameInput, nameInput])
-    console.log(nameList);
-    console.log(nameInput);
+    names.push(nameInput);
   
     reference.current.focus();
-    
     setNameInput("");
-  })
+
+  }
   const raffle = () => {
-    console.log(nameList);
+
+    const raffle = Math.floor(Math.random() * names.length);
+
+    setRaffleName(names[raffle].toUpperCase());
+    
   }
   return (
     <div>
         <h1>Gerador de sorteios</h1>
         <div className='window'>
-            <form onSubmit={useEffect}>
+            <form onSubmit={pushName}>
               <span>Sorteio de nomes</span>
               <input type="text" onChange={(e) => setNameInput(e.target.value)} ref={reference} value={nameInput}/>
               <button>inserir nome</button>
               
-              {nameList.map((itens) => <li>{itens}</li>)}
+              {names.map((itens, i) => <p key={i}>{itens}</p>)}
             </form>
             <button onClick={raffle}>sortear</button>
+            {raffleName !== '' && (<div>
+              <h2>O resultado é:</h2><h1>{raffleName}</h1>
+            </div>)}
         </div>
     </div>
   )
