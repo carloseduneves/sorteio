@@ -18,7 +18,12 @@ function Sorteio() {
 
     const raffle = Math.floor(Math.random() * names.length);
 
+
     setRaffleName(names[raffle].toUpperCase());
+
+    let indexFind = names.indexOf(names[raffle]);
+    names.splice(indexFind, 1);
+
     
   }
   return (
