@@ -8,4 +8,12 @@
 .a{
     background-color: yellow;
 }
+.raffleBoxName{
+    display: flex;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 

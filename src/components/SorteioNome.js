@@ -19,35 +19,28 @@ function SorteioNome() {
   const raffle = () => {
     if(names.length === 0){
       alert('insira nomes');
+      console.log(names);
       return;
-    }
-    const raffle = Math.floor(Math.random() * names.length);
-
-
+    }else{const raffle = Math.floor(Math.random() * names.length);
     setRaffleName(names[raffle].toUpperCase());
-
     let indexFind = names.indexOf(names[raffle]);
-    names.splice(indexFind, 1);
-
-   
+    names.splice(indexFind, 1);}
+    console.log(names);
   }
   return (
     <div>
        
         <div className='window'>
-        <button onClick={raffle}>sortear</button>
             <form onSubmit={pushName} className='form'>
-              <span>Sorteio de nomes</span>
-              <input type="text" onChange={(e) => setNameInput(e.target.value)} ref={reference} value={nameInput}/>
-              <button>inserir nome</button>
-              
-              
-              {names.map((itens, i) => 
-                <p key={i} className='ListNames'>{itens}</p>
-              )}
+              <div className='raffleBoxName'>
+                <input type="text" onChange={(e) => setNameInput(e.target.value)} ref={reference} value={nameInput} placeholder="digite um nome"/>
+                <button>inserir nome</button>
+              </div>  
             </form>
-           
-           
+            <button onClick={raffle}>sortear</button>
+            {names.map((itens, i) =>
+              <p key={i} className='ListNames'>{itens}</p>
+              )}
             {raffleName !== '' && (<div className='List'>
               <h2>O resultado é:</h2><h1>{raffleName}</h1>
             </div>)}
