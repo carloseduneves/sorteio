@@ -1,6 +1,7 @@
 import {useState, useRef} from 'react';
+import './SorteioNome.css'
 
-function Sorteio() {
+function SorteioNome() {
   const [raffleName, setRaffleName] = useState('');
   const [names] = useState([]);
   const [nameInput, setNameInput] = useState("");
@@ -11,12 +12,14 @@ function Sorteio() {
     names.push(nameInput);
   
     reference.current.focus();
+
     setNameInput("");
 
   }
   const raffle = () => {
     if(names.length === 0){
       alert('insira nomes');
+      return;
     }
     const raffle = Math.floor(Math.random() * names.length);
 
@@ -30,17 +33,22 @@ function Sorteio() {
   }
   return (
     <div>
-        <h1>Gerador de sorteios</h1>
+       
         <div className='window'>
-            <form onSubmit={pushName}>
+        <button onClick={raffle}>sortear</button>
+            <form onSubmit={pushName} className='form'>
               <span>Sorteio de nomes</span>
               <input type="text" onChange={(e) => setNameInput(e.target.value)} ref={reference} value={nameInput}/>
               <button>inserir nome</button>
               
-              {names.map((itens, i) => <p key={i}>{itens}</p>)}
+              
+              {names.map((itens, i) => 
+                <p key={i} className='ListNames'>{itens}</p>
+              )}
             </form>
-            <button onClick={raffle}>sortear</button>
-            {raffleName !== '' && (<div>
+           
+           
+            {raffleName !== '' && (<div className='List'>
               <h2>O resultado é:</h2><h1>{raffleName}</h1>
             </div>)}
         </div>
@@ -48,4 +56,4 @@ function Sorteio() {
   )
 }
 
-export default Sorteio
+export default SorteioNome
