@@ -9,12 +9,14 @@ function SorteioNome() {
 
  const pushName = (e) => {
     e.preventDefault();
-    names.push(nameInput);
+    if(nameInput !== ""){
+      names.push(nameInput)
+    };
   
     reference.current.focus();
 
     setNameInput("");
-
+    console.log(names);
   }
   const raffle = () => {
     if(names.length === 0){
@@ -29,11 +31,16 @@ function SorteioNome() {
   }
   return (
     <div>
-       
+       {raffleName !== '' && (<div className='List'>
+              <h2>O resultado é:</h2><h1>{raffleName}</h1>
+            </div>)}
         <div className='window'>
             <form onSubmit={pushName} className='form'>
               <div className='raffleBoxName'>
-                <input type="text" onChange={(e) => setNameInput(e.target.value)} ref={reference} value={nameInput} placeholder="digite um nome"/>
+                <input type="text" onChange={(e) => 
+                  setNameInput(e.target.value)
+                   } 
+                ref={reference} value={nameInput} placeholder="digite um nome"/>
                 <button>inserir nome</button>
               </div>  
             </form>
@@ -41,9 +48,7 @@ function SorteioNome() {
             {names.map((itens, i) =>
               <p key={i} className='ListNames'>{itens}</p>
               )}
-            {raffleName !== '' && (<div className='List'>
-              <h2>O resultado é:</h2><h1>{raffleName}</h1>
-            </div>)}
+            
         </div>
     </div>
   )
